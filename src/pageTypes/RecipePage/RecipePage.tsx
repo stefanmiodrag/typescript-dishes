@@ -70,7 +70,9 @@ const RecipePage: React.FC<IRecipePage> = ({
 
             {dishes ? (
                 <ul>
-                    {dishes.map((dish: IDish) => <ListItem dish={dish} onRemoveDish={onRemoveDish} />)}
+                    {dishes.map((dish: IDish, i: number) => (
+                        <ListItem key={i} dish={dish} onRemoveDish={onRemoveDish} />
+                    ))}
                 </ul>
             ) : (
                     <i>No dishes were found...</i>

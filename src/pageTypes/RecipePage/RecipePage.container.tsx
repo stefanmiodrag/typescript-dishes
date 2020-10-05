@@ -41,7 +41,8 @@ const RecipePageContainer = () => {
         }
 
         init()
-    }, [initialState])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const onHandleChange = (evt: DOMEvent<HTMLInputElement>) => {
         const value = evt.target.value;
