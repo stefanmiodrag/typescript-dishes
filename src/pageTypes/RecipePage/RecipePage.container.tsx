@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import { DOMEvent, IState, IDish } from '../../types';
@@ -6,11 +6,42 @@ import { DOMEvent, IState, IDish } from '../../types';
 import RecipePage from './RecipePage';
 
 const RecipePageContainer = () => {
+    // "Database"
+    const initialState = [
+        {
+            _id: uuid(),
+            name: "Spring Rolls",
+            type: "Vegan"
+        },
+        {
+            _id: uuid(),
+            name: "Ramen",
+            type: "Meat"
+        }
+    ];
+
     const [dishes, setDishes] = useState<IDish[] | null>(null);
     const [state, setState] = useState<IState>({
         name: '',
         type: '',
-    });
+    })
+
+    useEffect(() => {
+        const init = async () => {
+            try {
+                // Let's pretend this is an API request...
+                setDishes(initialState)
+                // .catch((e) => {
+                //     console.error('setDishes::', e)
+                // })
+            }
+            catch (e) {
+                console.error('init::', e)
+            }
+        }
+
+        init()
+    }, [initialState])
 
     const onHandleChange = (evt: DOMEvent<HTMLInputElement>) => {
         const value = evt.target.value;
