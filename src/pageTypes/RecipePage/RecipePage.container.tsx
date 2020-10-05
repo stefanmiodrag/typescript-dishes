@@ -25,8 +25,8 @@ const RecipePageContainer = () => {
 
         const { name, type } = state;
 
-        if (name.length === 0) {
-            console.error('onCreateDish::', 'Input value is missing')
+        if (name.length === 0 || type.length === 0) {
+            console.error('onCreateDish::', 'Input values are missing')
             return;
         }
 
